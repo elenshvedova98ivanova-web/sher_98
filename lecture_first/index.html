@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        .result-container {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            display: none;
+        }
+        .review-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: white;
+            border-left: 4px solid #007bff;
+        }
+        .sentiment-result {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .sentiment-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .positive {
+            color: #28a745;
+        }
+        .negative {
+            color: #dc3545;
+        }
+        .neutral {
+            color: #ffc107;
+        }
+        .loading {
+            color: #6c757d;
+            text-align: center;
+            display: none;
+        }
+        .error {
+            color: #dc3545;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Review Sentiment Analysis</h1>
+        
+        <div class="input-group">
+            <label for="apiToken">Hugging Face API Token (optional):</label>
+            <input type="text" id="apiToken" placeholder="Enter your Hugging Face API token for higher rate limits">
+        </div>
+        
+        <button id="analyzeBtn">Analyze Random Review</button>
+        
+        <div class="loading" id="loading">
+            <i class="fas fa-spinner fa-spin"></i> Analyzing sentiment...
+        </div>
+        
+        <div class="error" id="error"></div>
+        
+        <div class="result-container" id="resultContainer">
+            <div class="review-text" id="reviewText"></div>
+            <div class="sentiment-result">
+                <div class="sentiment-icon" id="sentimentIcon"></div>
+                <div id="sentimentLabel"></div>
+            </div>
+        </div>
+    </div>
 
+    <script src="app.js"></script>
+</body>
+</html>
